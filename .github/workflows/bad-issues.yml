@@ -24,14 +24,19 @@ jobs:
                   setLabels = true;
                 }
                 if (context.payload.issue.title.match(/\[bug\]/i)) {
-                  labels.push('high-priority');
                   labels.push('bug');
                   labels.push('needs-review');
                   labels = labels.filter(label => label !== 'needs-review');
                   setLabels = true;
                 }
-                if (labels.includes(tweak)) {
+                if (labels.includes('bug')) {
+                  labels.push('high-priority');
+                }
+                if (labels.includes('tweak')) {
                   labels.push('med-priority');
+                }
+                if (labels.includes('enhancement') || labels.includes('overhaul')) {
+                  labels.push('low-priority');
                 }
                 if (labels.length === 0) {
                   labels.push('needs-review');
