@@ -1,0 +1,23 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Issue Verifier
+on:
+  issues:
+    types:
+      - opened
+jobs:
+  add-comment:
+    if: github.event.label.name == ''
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Add comment
+        uses: peter-evans/create-or-update-comment@a35cf36e5301d70b76f316e867e7788a55a31dae
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Looks like you were a little STINKER and didn't use the issue request form or the bug report form to create this task; not sure why/how you did that... This has been flagged for manual review and will increase the time for your issue to be processed. Do not create a duplicate issue with the form. If you are a Pixuara Org Admin and you created this task, label it. :sparkles: Thank you for your contribution! :sparkles:
