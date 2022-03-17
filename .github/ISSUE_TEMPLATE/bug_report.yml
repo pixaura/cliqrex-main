@@ -50,3 +50,6 @@ body:
       options:
         - label: I have read the Contribution Guidelines.
           required: true
+  - type: textarea
+    attributes:
+      label: Additional information & file uploads
