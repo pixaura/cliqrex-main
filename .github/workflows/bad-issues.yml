@@ -20,13 +20,11 @@ jobs:
                   labels.push('low-priority');
                   labels.push('enhancement');
                   labels.push('needs-review');
-                  labels = labels.filter(label => label !== 'needs-review');
                   setLabels = true;
                 }
                 if (context.payload.issue.title.match(/\[bug\]/i)) {
                   labels.push('bug');
                   labels.push('needs-review');
-                  labels = labels.filter(label => label !== 'needs-review');
                   setLabels = true;
                 }
                 if (labels.includes('bug')) {
