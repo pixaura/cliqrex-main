@@ -1,0 +1,9 @@
+[submodule "site"]
+	path = site
+	url = https://github.com/pixaura/cliqrex-site.git
+[submodule "app"]
+	path = app
+	url = https://github.com/pixaura/cliqrex-app.git
+[submodule "api"]
+	path = api
+	url = https://github.com/pixaura/cliqrex-api.git
