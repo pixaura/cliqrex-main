@@ -1,24 +1,143 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Issue Verifier
+name: "Issue Automation"
 on:
   issues:
-    types:
-      - opened
+    types: [opened, edited, closed, reopened, labeled, unlabeled]
+
 jobs:
-  add-comment:
-    if: github.event.action != 'labeled'
+  issue-automation:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
     steps:
-      - name: Add comment
-        uses: peter-evans/create-or-update-comment@a35cf36e5301d70b76f316e867e7788a55a31dae
+      - uses: actions/github-script@v5
         with:
-          issue-number: ${{ github.event.issue.number }}
-          body: |
-            Looks like you've violated the Contribution Guidelines and didn't use the request form or the bug report form to create this task thus, not giving it the proper labels; not sure why/how you did that... This has been flagged for manual review and will increase the time for your issue to be processed. Do not create a duplicate issue with the form. If you are a Pixuara Org Admin and you created this task, label it.\n\n :sparkles: Thank you for your contribution! :sparkles:
-  
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            let labels = context.payload.issue.labels.map(label => label.name);
+            let setLabels = false;
+            switch (context.payload.action) {
+              case 'opened':
+              case 'edited': {
+                if (context.payload.issue.title.match(/\[request\]|feature request/i)) {
+                  labels.push('enhancement');
+                  labels.push('needs-review');
+                  labels = labels.filter(label => label !== 'triage');
+                  setLabels = true;
+                }
+                if (context.payload.issue.title.match(/\[bug\]/i)) {
+                  labels.push('bug');
+                  labels.push('needs-review');
+                  labels = labels.filter(label => label !== 'triage');
+                  setLabels = true;
+                }
+                if (labels.length === 0) {
+                  labels.push('needs-review');
+                  setLabels = true;
+                }
+                break;
+              }
+              case 'closed': {
+                if (labels.includes('bug') || labels.includes('request') || labels.includes('enhancement') || labels.includes('overhaul') || labels.includes('tweak')) {
+                  labels.push('done');
+                  setLabels = true;
+                }
+                break;
+              }
+              case 'reopened': {
+                if (labels.includes('done')) {
+                  labels = labels.filter(label => label !== 'done');
+                  setLabels = true;
+                }
+                break;
+              }
+            }
+            if (setLabels) {
+              github.rest.issues.setLabels({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: labels
+              })
+            }
+      #- uses: OctoPrint/actions/issue-validation@main
+      #  if: github.event_name == 'issues' && (github.event.action == 'opened' || github.event.action == 'edited')
+      #  with:
+      #    repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      # - uses: actions/github-script@v5
+      #   env:
+      #     REMINDER: >
+      #       Hi @${{ github.event.issue.user.login }}!
+      #       It looks like you didn't upload a [system info bundle](https://community.octoprint.org/t/29887) as requested by the template.
+      #       A bundle is required to further process your issue. It contains important logs and
+      #       system information to be able to put your issue into context and give pointers as to
+      #       what has happened.
+      #       Please **edit your original post above** and upload **a bundle zip file**. Actually upload the file please and
+      #       do not paste some link to a cloud provider, we want to have everything in one place here. Also do
+      #       not unpack, repack or otherwise modify the bundle or its name, share it **exactly** like you get it from OctoPrint.
+      #       Without the availability of a bundle, your issue will have to be closed.
+      #       Thank you for your collaboration.
+      #     THANKYOU: >
+      #       Thank you @${{ github.event.issue.user.login }} for adding a bundle! Now this can actually get looked at.
+      #   with:
+      #     script: |
+      #       const { REMINDER, THANKYOU } = process.env;
+      #       const bundleRegex = /\[(octoprint-systeminfo-\d{14}\.zip)\]\(([^)]+)\)/g;
+      #       const marker = "<!-- check_for_bundle -->";
+      #       const issueLabels = await github.rest.issues.listLabelsOnIssue({
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         issue_number: context.issue.number
+      #       });
+      #       let labels = issueLabels.data.map(label => label.name);
+      #       const comments = await github.rest.issues.listComments({
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         issue_number: context.issue.number,
+      #       })
+      #       const comment = comments.data.find(c => c.user.login === "github-actions[bot]" && c.body.includes(marker));
+      #       if (comment) {
+      #         console.log("Found comment, id=" + comment.id);
+      #       } else {
+      #         console.log("No comment found");
+      #       }
+      #       if (!labels.includes("triage") || labels.includes("approved")) {
+      #         console.log("Deleting comment if it exists...");
+      #         if (comment) {
+      #           await github.rest.issues.deleteComment({
+      #             owner: context.repo.owner,
+      #             repo: context.repo.repo,
+      #             comment_id: comment.id,
+      #           })
+      #         }
+      #         return;
+      #       }
+      #       const found = !!context.payload.issue.body.match(bundleRegex);
+      #       if (!found) {
+      #         console.log("No bundle found, posting/updating reminder");
+      #         const text = REMINDER + "\n" + marker;
+      #         if (!comment) {
+      #           await github.rest.issues.createComment({
+      #             owner: context.repo.owner,
+      #             repo: context.repo.repo,
+      #             issue_number: context.issue.number,
+      #             body: text
+      #           });
+      #         } else if (comment.body !== text) {
+      #           await github.rest.issues.updateComment({
+      #             owner: context.repo.owner,
+      #             repo: context.repo.repo,
+      #             comment_id: comment.id,
+      #             body: text
+      #           });
+      #         }
+      #       } else if (found && comment) {
+      #         console.log("Bundle found, saying thanks");
+      #         const text = REMINDER.split("\n\n").map(line => `~~${line.trim()}~~`).join("\n\n") + "\n\n" + THANKYOU + "\n" + marker;
+      #         if (comment.body !== text) {
+      #           await github.rest.issues.updateComment({
+      #             owner: context.repo.owner,
+      #             repo: context.repo.repo,
+      #             comment_id: comment.id,
+      #             body: text
+      #           });
+      #         }
+      #       }
