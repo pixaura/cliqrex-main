@@ -1,0 +1,53 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["bug", "triage"]
+assignees:
+  - palepinkdot
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: ex. email@example.com
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+      value: "A bug happened!"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: What version of CliqRex are you running?
+      placeholder: ex. 0.0.17-1711
+    validations:
+      required: true
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: What platforms are you seeing the problem on?
+      multiple: true
+      options:
+        - Android
+        - iOS
+        - Web
+  - type: checkboxes
+    id: contrib
+    attributes:
+      label: Make sure you have read the Contribution Guidelines.
+      description: By submitting this issue, you agree to follow our [Contribution Guidelines](https://github.com/pixaura/CliqRex-Publiq/blob/main/CONTRIBUTING.md)
+      options:
+        - label: I have read the Contribution Guidelines.
+          required: true
