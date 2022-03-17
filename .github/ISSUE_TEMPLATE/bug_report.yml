@@ -47,7 +47,7 @@ body:
     id: contrib
     attributes:
       label: Make sure you have read the Contribution Guidelines.
-      description: By submitting this issue, you agree to follow our [Contribution Guidelines](https://github.com/pixaura/CliqRex-Publiq/blob/main/CONTRIBUTING.md)
+      description: By submitting this issue, you agree to follow our [Contribution Guidelines](https://github.com/pixaura/cliqrex-main/blob/main/CONTRIBUTING.md)
       options:
         - label: I have read the Contribution Guidelines.
           required: true

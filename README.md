@@ -3,8 +3,8 @@
 ## Contributing
 
 Contributions of all kinds are welcome, (except in the form of code) debugging help
-in the [bug tracker](https://github.com/pixaura/CliqRex-Publiq/issues), support of other users on
-[discussion board](https://github.com/pixaura/CliqRex-Publiq/discussions),
+in the [bug tracker](https://github.com/pixaura/cliqrex-main/issues), support of other users on
+[discussion board](https://github.com/pixaura/cliqrex-main/discussions),
 and also financially.
 
 If you think something is bad about CliqRex, please help
@@ -14,4 +14,4 @@ in any way to make it better
 after all :) -->
 
 For information about how to go about submitting bug reports or pull requests, please see the project's
-[Contribution Guidelines](https://github.com/pixaura/CliqRex-Publiq/blob/main/CONTRIBUTING.md).
+[Contribution Guidelines](https://github.com/pixaura/cliqrex-main/blob/main/CONTRIBUTING.md).

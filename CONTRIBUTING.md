@@ -17,14 +17,14 @@ nothing but ticket management.
 - If you want to post a **feature request** or a **documentation request**, add `[Request]`
   to your issue's title (e.g. `[Request] Awesome new feature`). A question on how to run/change/setup
   something is **not** what qualifies as a request here, use the
-  [discussion board](https://github.com/pixaura/CliqRex-Publiq/discussions) for
+  [discussion board](https://github.com/pixaura/cliqrex-main/discussions) for
   such support issues.
 <!-- - If you are a **developer** that wants to brainstorm a pull request or possible
   changes to the plugin system, please get in touch on the
   [community forum at community.octoprint.org](https://community.octoprint.org/c/development). -->
 - If you need **support**, have a **question** or some **other reason** that
   doesn't fit any of the above categories, the issue tracker is not the right place.
-  Consult the [discussion board](https://github.com/pixaura/CliqRex-Publiq/discussions) instead.
+  Consult the [discussion board](https://github.com/pixaura/cliqrex-main/discussions) instead.
 
 No matter what kind of ticket you create, never mix two or more "ticket reasons"
 into one ticket: One ticket per bug, request, brainstorming thread please.
@@ -54,7 +54,7 @@ following section *completely* and also follow the instructions in the
 
    **CliqRex doesn't manage your network connection** -
    if you have any kinds of problems with that, get in touch on the
-   [discussion board](https://github.com/pixaura/CliqRex-Publiq/discussions).
+   [discussion board](https://github.com/pixaura/cliqrex-main/discussions).
 
 2. Please make sure to **test out the current version** of CliqRex to see
    whether the problem you are encountering still exists.
@@ -64,8 +64,8 @@ following section *completely* and also follow the instructions in the
    for information on how to do this. -->
 
 3. The problem still exists? Then please **look through the
-   [existing tickets](https://github.com/pixaura/CliqRex-Publiq/issues?state=open)
-   (use the [search](https://github.com/pixaura/CliqRex-Publiq/search?q=&ref=cmdform&type=Issues))**
+   [existing tickets](https://github.com/pixaura/cliqrex-main/issues?state=open)
+   (use the [search](https://github.com/pixaura/cliqrex-main/search?q=&ref=cmdform&type=Issues))**
    to check if there already exists a report of the issue you are encountering.
    Sorting through duplicates of the same issue sometimes causes more work than
    fixing it. Take the time to filter through possible duplicates and be really
@@ -86,7 +86,7 @@ following section *completely* and also follow the instructions in the
    there's now also a [red herring](https://en.wikipedia.org/wiki/Red_herring) interfering - so please be
    very diligent here!
 
-If in doubt about any of the above - get in touch on the [discussion board](https://github.com/pixaura/CliqRex-Publiq/discussions)
+If in doubt about any of the above - get in touch on the [discussion board](https://github.com/pixaura/cliqrex-main/discussions)
 instead of opening a ticket here. If you are actually running into a bug, we'll figure it out together
 there.
 
@@ -107,7 +107,7 @@ or request features within CliqRex (not iOS, Android, network, or any unrelated 
 
 Do not seek support here ("I need help with ...", "I have a
 question ..."), that belongs on the discussion board at
-https://github.com/pixaura/CliqRex-Publiq/discussions, NOT here.
+https://github.com/pixaura/cliqrex-main/discussions, NOT here.
 
 Mark requests with a "[Request]" prefix in the title please. For bug
 reports fully fill out the bug reporting template (if you don't know
