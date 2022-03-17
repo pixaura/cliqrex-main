@@ -1,7 +1,7 @@
 name: "Issue Automation"
 on:
   issues:
-    types: [opened, edited, closed, reopened, labeled, unlabeled]
+    types: [opened, edited, closed, reopened, labeled, unlabeled, assigned]
 
 jobs:
   issue-automation:
@@ -20,6 +20,7 @@ jobs:
                   labels.push('low-priority');
                   labels.push('enhancement');
                   labels.push('needs-review');
+
                   setLabels = true;
                 }
                 if (context.payload.issue.title.match(/\[bug\]/i)) {
