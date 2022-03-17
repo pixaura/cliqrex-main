@@ -23,10 +23,8 @@ body:
       label: What is your idea?
       description: Also give us all the details you can.
       placeholder: I think the app should give me free money!
-      
     validations:
       required: true
-  
   - type: dropdown
     id: where
     attributes:
