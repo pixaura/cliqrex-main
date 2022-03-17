@@ -41,7 +41,7 @@ into one ticket: One ticket per bug, request, brainstorming thread please.
 ## How to file a bug report
 
 If you encounter an issue with CliqRex, you are welcome to
-[submit a bug report](https://github.com/pixaura/CliqRex/issues/new?template=bug_report.yml).
+[submit a bug report](https://github.com/pixaura/cliqrex-main/issues/new?template=bug_report.yml).
 
 Before you do that for the first time though please take a moment to read the
 following section *completely* and also follow the instructions in the
