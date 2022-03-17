@@ -1,14 +1,14 @@
 name: Bug Report
 description: File a bug report
-title: "[Bug]: "
-labels: ["bug", "triage"]
+title: "[Request]: "
+labels: ["enhancment", "needs review"]
 assignees:
   - palepinkdot
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this bug report!
+        Thanks for taking the time to fill out this feature request!
   - type: input
     id: contact
     attributes:
@@ -18,32 +18,24 @@ body:
     validations:
       required: true
   - type: textarea
-    id: what-happened
+    id: what-is-your-idea
     attributes:
-      label: What happened?
-      description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
+      label: What is your idea?
+      description: Also give us all the details you can.
+      placeholder: I think the app should give me free money!
       
     validations:
       required: true
   
   - type: dropdown
-    id: browsers
+    id: where
     attributes:
-      label: What platforms are you seeing the problem on?
+      label: Which platform should we see this feature on?
       multiple: true
       options:
-        - API (don't pick this unless you know what you're doing)
+        - API
         - Mobile
         - Web
-  - type: input
-    id: version
-    attributes:
-      label: Version
-      description: What version of CliqRex are you running?
-      placeholder: ex. 0.0.17-1711, blank if web or API
-    validations:
-      required: false
   - type: checkboxes
     id: contrib
     attributes:
