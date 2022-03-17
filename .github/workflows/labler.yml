@@ -1,0 +1,41 @@
+
+name: Issue Verifier
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  label_issue_high:
+        if: github.event.label.name == 'bug' || github.event.label.name == 'needs-review'
+        runs-on: ubuntu-latest
+        permissions:
+          issues: write
+        steps:
+          - name: Label issues
+            uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
+            with:
+              add-labels: "high-priority"
+              repo-token: ${{ secrets.GITHUB_TOKEN }}
+  label_issue_med:
+        if: github.event.label.name == 'tweak'
+        runs-on: ubuntu-latest
+        permissions:
+          issues: write
+        steps:
+          - name: Label issues
+            uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
+            with:
+              add-labels: "med-priority"
+              repo-token: ${{ secrets.GITHUB_TOKEN }}
+  label_issue_low:
+        if: github.event.label.name == 'enhancement' || github.event.label.name == 'overhaul'
+        runs-on: ubuntu-latest
+        permissions:
+          issues: write
+        steps:
+          - name: Label issues
+            uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
+            with:
+              add-labels: "high-priority"
+              repo-token: ${{ secrets.GITHUB_TOKEN }}    

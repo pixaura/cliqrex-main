@@ -10,7 +10,7 @@ on:
       - opened
 jobs:
   add-comment:
-    if: github.event.label.name == ''
+    if: github.event.action != 'labeled'
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -21,36 +21,4 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           body: |
             Looks like you've violated the Contribution Guidelines and didn't use the request form or the bug report form to create this task thus, not giving it the proper labels; not sure why/how you did that... This has been flagged for manual review and will increase the time for your issue to be processed. Do not create a duplicate issue with the form. If you are a Pixuara Org Admin and you created this task, label it.\n\n :sparkles: Thank you for your contribution! :sparkles:
-  label_issue_high:
-    if: github.event.label.name == 'bug' || github.event.label.name == 'needs-review'
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
-    steps:
-      - name: Label issues
-        uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
-        with:
-          add-labels: "high-priority"
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-  label_issue_med:
-    if: github.event.label.name == 'tweak'
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
-    steps:
-      - name: Label issues
-        uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
-        with:
-          add-labels: "med-priority"
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-  label_issue_low:
-    if: github.event.label.name == 'enhancement' || github.event.label.name == 'overhaul'
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
-    steps:
-      - name: Label issues
-        uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
-        with:
-          add-labels: "high-priority"
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+  
