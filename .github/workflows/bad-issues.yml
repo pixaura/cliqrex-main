@@ -17,21 +17,27 @@ jobs:
               case 'opened':
               case 'edited': {
                 if (context.payload.issue.title.match(/\[request\]|feature request/i)) {
+                  labels.push('low-priority');
                   labels.push('enhancement');
                   labels.push('needs-review');
-                  labels = labels.filter(label => label !== 'triage');
+                  labels = labels.filter(label => label !== 'needs-review');
                   setLabels = true;
                 }
                 if (context.payload.issue.title.match(/\[bug\]/i)) {
+                  labels.push('high-priority');
                   labels.push('bug');
                   labels.push('needs-review');
-                  labels = labels.filter(label => label !== 'triage');
+                  labels = labels.filter(label => label !== 'needs-review');
                   setLabels = true;
+                }
+                if (labels.includes(tweak)) {
+                  labels.push('med-priority');
                 }
                 if (labels.length === 0) {
                   labels.push('needs-review');
                   setLabels = true;
                 }
+                
                 break;
               }
               case 'closed': {
