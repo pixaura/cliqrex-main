@@ -6,8 +6,10 @@ on:
 jobs:
   issue-automation:
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/github-script@v5
+        
         env:
           REMINDER: >
             Hi @${{ github.event.issue.user.login }}!
@@ -17,6 +19,7 @@ jobs:
             Do not create a duplicate issue, you may be flagged as spam and all your future issues will be ignored and closed with no resolution.             
             :sparkle: Thank you for your collaboration. :sparkle:
         with:
+          debug: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const { REMINDER } = process.env;
@@ -48,6 +51,7 @@ jobs:
                   labels.push('low-priority');
                 }
                 if (labels.length === 0 || (labels.length == 1 && labels.includes('needs-review'))) {
+                console.log("No bundle found, posting/updating reminder");
                   if (!label.includes('needs-review')) {
                     labels.push('needs-review');
                   }
