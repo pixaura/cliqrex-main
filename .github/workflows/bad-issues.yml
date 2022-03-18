@@ -8,9 +8,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v5
+        env:
+          REMINDER: >
+            Hi @${{ github.event.issue.user.login }}!
+            It looks like you didn't [follow the contribution guidelines](https://github.com/pixaura/cliqrex-main/blob/main/CONTRIBUTING.md) as requested by the template.
+            All contributions, **regardless of who makes them**, must follow the [contribution guidelines](https://github.com/pixaura/cliqrex-main/blob/main/CONTRIBUTING.md).
+            Please **edit your original post above** and follow the format listed in [whichever form best suits your issue](https://github.com/pixaura/cliqrex-main/issues/new/choose).
+            Do not create a duplicate issue, you may be flagged as spam and all your future issues will be ignored and closed with no resolution.             
+            :sparkle: Thank you for your collaboration. :sparkle:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const { REMINDER } = process.env;
+            const text = REMINDER;
             let labels = context.payload.issue.labels.map(label => label.name);
             let setLabels = false;
             switch (context.payload.action) {
@@ -37,8 +47,16 @@ jobs:
                 if (labels.includes('enhancement') || labels.includes('overhaul')) {
                   labels.push('low-priority');
                 }
-                if (labels.length === 0) {
-                  labels.push('needs-review');
+                if (labels.length === 0 || (labels.length == 1 && labels.includes('needs-review'))) {
+                  if (!label.includes('needs-review')) {
+                    labels.push('needs-review');
+                  }
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: context.issue.number,
+                    body: text
+                });
                   setLabels = true;
                 }
                 
