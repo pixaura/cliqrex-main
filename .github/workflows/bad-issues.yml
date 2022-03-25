@@ -60,8 +60,14 @@ jobs:
                 }
                 if (labels.length === 0 || (labels.length == 1 && labels.includes('needs-review'))) {
                 console.log("No bundle found, posting/updating reminder");
-                  if (!label.includes('needs-review')) {
+                  if (!labels.includes('needs-review')) {
                     labels.push('needs-review');
+                    await github.rest.issues.createComment({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      issue_number: context.issue.number,
+                      body: text
+                    });
                   }
                   
                   setLabels = true;
