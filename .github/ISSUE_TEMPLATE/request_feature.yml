@@ -1,7 +1,7 @@
 name: Feature Request
 description: Request a feature to be added
 title: "[Request]: "
-labels: ["new feature", "triage"]
+labels: ["new feature", "user-feedback", "triage"]
 assignees:
   - palepinkdot
 body:
