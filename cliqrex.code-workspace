@@ -4,5 +4,23 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"type": "pwa-node",
+				"request": "launch",
+				"name": "Launch Program",
+				"skipFiles": [
+					"<node_internals>/**"
+				],
+				"program": "/home/mg/dev/cliqrex-main/api/src/server.ts",
+				"__workspaceFolder": "/home/mg/dev/cliqrex-main/api/src",
+				"outFiles": [
+					"${workspaceFolder}/**/*.js"
+				]
+			}
+		]
+	}
 }
