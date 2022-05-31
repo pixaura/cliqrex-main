@@ -1,7 +1,13 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": "site"
+		},
+		{
+			"path": "app"
+		},
+		{
+			"path": "api"
 		}
 	],
 	"settings": {},
