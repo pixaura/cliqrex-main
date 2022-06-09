@@ -1,7 +1,7 @@
 name: New Story Template
 description: Import ideas from Trello
 title: "Feature: "
-labels: ["enhancement :sparkles:"]
+labels: ["change", "triage"]
 body:
   # - type: markdown
   #   attributes:
