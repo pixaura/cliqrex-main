@@ -1,5 +1,5 @@
-name: Feature Request
-description: Suggest an idea for CliqRex
+name: New Story Template
+description: Import ideas from Trello
 title: "Feature: "
 labels: ["enhancement :sparkles:"]
 body:
@@ -15,7 +15,7 @@ body:
       label: Avoid Duplicates
       description: Please ensure you've completed all of the following.
       options:
-        - label: I have searched the [issue tracker](https://github.com/ferdium/ferdium-app/issues) for a feature request that matches the one I want to file, without success.
+        - label: I have searched the [issue tracker](https://github.com/pixaura/cliqrex-main/issues), without success.
           required: true
   - type: textarea
     attributes:
