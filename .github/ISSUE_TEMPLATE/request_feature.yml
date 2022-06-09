@@ -1,47 +1,45 @@
 name: Feature Request
-description: Request a feature to be added
-title: "[Request]: "
-labels: ["new feature", "user-feedback", "triage"]
-assignees:
-  - palepinkdot
+description: Suggest an idea for CliqRex
+title: "Feature: "
+labels: ["enhancement :sparkles:"]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Thanks for taking the time to fill out this feature request!
-  - type: input
-    id: contact
-    attributes:
-      label: Contact Details
-      description: How can we get in touch with you if we need more info?
-      placeholder: ex. email@example.com
-    validations:
-      required: true
-  - type: textarea
-    id: what-is-your-idea
-    attributes:
-      label: What is your idea?
-      description: Also give us all the details you can.
-      placeholder: I think the app should give me free money!
-    validations:
-      required: true
-  - type: dropdown
-    id: platform
-    attributes:
-      label: Which platform should we see this feature on?
-      multiple: true
-      options:
-        - API
-        - Mobile
-        - Web
+  # - type: markdown
+  #   attributes:
+  #     value: |
+  #       1. Please remember that if you are logging a bug for some service that has *stopped working*, please log the bug [here](https://github.com/ferdium/ferdium-recipes/issues)
+  #       2. If you are requesting support for a new service in Ferdium, please log it [here](https://github.com/ferdium/ferdium-recipes/pulls)
+  #       3. Please remember to read the [self-help documentation](https://github.com/ferdium/ferdium-app#troubleshooting-recipes-self-help) - in case it helps you unblock yourself for issues related to old recipes.
+  #       4. Please fill our form below, this way we can analyse and fix the problem as fast as possible.
   - type: checkboxes
-    id: contrib
     attributes:
-      label: Make sure you have read the Contribution Guidelines.
-      description: By submitting this issue, you agree to follow our [Contribution Guidelines](https://github.com/pixaura/cliqrex-main/blob/main/CONTRIBUTING.md)
+      label: Avoid Duplicates
+      description: Please ensure you've completed all of the following.
       options:
-        - label: I have read the Contribution Guidelines.
+        - label: I have searched the [issue tracker](https://github.com/ferdium/ferdium-app/issues) for a feature request that matches the one I want to file, without success.
           required: true
   - type: textarea
     attributes:
-      label: Additional information & file uploads
+      label: Description
+      description: A clear and concise description of what the feature is. Ex. As a [persona], I want to [Action] so that I can [objective]
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Acceptance Criteria
+      description: A bulleted list of criteria that should be used to validate that the story has been implemented correctly.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Exceptions
+      description: A list of exceptions to the Acceptance Criteria
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Related Issues (if applicable)
+      description: List of related issues.
+  - type: textarea
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help visualize the feature.

@@ -1,55 +1,87 @@
-name: Bug Report
-description: File a bug report
-title: "[Bug]: "
-labels: ["bug", "user-report", "triage"]
-assignees:
-  - palepinkdot
+name: Bug report
+description: Report a bug in CliqRex
+title: "Bug: "
+labels: ["bug", "triage"]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Thanks for taking the time to fill out this bug report!
-  - type: input
-    id: contact
-    attributes:
-      label: Contact Details
-      description: How can we get in touch with you if we need more info?
-      placeholder: ex. email@example.com
-    validations:
-      required: true
-  - type: textarea
-    id: what-happened
-    attributes:
-      label: What happened?
-      description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
-    validations:
-      required: true
-  - type: dropdown
-    id: platform
-    attributes:
-      label: What platforms are you seeing the problem on?
-      multiple: true
-      options:
-        - API
-        - Mobile
-        - Web
-  - type: input
-    id: version
-    attributes:
-      label: Version
-      description: What version of CliqRex are you running?
-      placeholder: ex. 0.0.17-1711, blank if web or API
-    validations:
-      required: false
   - type: checkboxes
-    id: contrib
     attributes:
-      label: Make sure you have read the Contribution Guidelines.
-      description: By submitting this issue, you agree to follow our [Contribution Guidelines](https://github.com/pixaura/cliqrex-main/blob/main/CONTRIBUTING.md)
+      label: Avoid duplicates
+      description: Please ensure you've completed the following
       options:
-        - label: I have read the Contribution Guidelines.
+        - label: I have searched the [issues tracker](https://github.com/pixaura/cliqrex-main/issues) for a bug report similar to mine, in vain
           required: true
+  # - type: input
+  #   attributes:
+  #     label: Ferdium Version
+  #     description: What version of Ferdium are you using?
+  #     placeholder: 6.0.0-nightly.7
+  #   validations:
+  #     required: true
+  - type: dropdown
+    attributes:
+      label: What platform are you using?
+      options:
+        - iOS App
+        - Android App
+        - Web App
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Operating System Version
+      description: What Operating System version are you using? On Windows, click Start button > Settings > System > About. On macOS, click the Apple Menu > About This Mac. On Linux, use lsb_release or uname -a.
+      placeholder: "e.g. Android Tiramasu, iOS 15.2"
+    validations:
+      required: true
+  # - type: dropdown
+  #   attributes:
+  #     label: What arch are you using?
+  #     options:
+  #       - x64
+  #       - ia32
+  #       - arm64 (including Apple Silicon)
+  #       - Other (specify in Additional information section)
+  #   validations:
+  #     required: true
+  - type: input
+    attributes:
+      label: Last Known Working CliqRex version
+      description: What is the last version of CliqRex this worked in, if applicable?
+      placeholder: "0.0.18 (1810)"
   - type: textarea
     attributes:
-      label: Additional information & file uploads
+      label: Expected Behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Actual Behavior
+      description: A clear description of what actually happens.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: Explain to us how we can reproduce your bug on our device
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+  # - type: input
+  #   attributes:
+  #     label: Debug link
+  #     description: Please get your debug link via Ferdium's "Help" > "Publish Debug Information", then share your link with us
+  #   validations:
+  #     required: false
+  - type: textarea
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help visualize your problem
+  - type: textarea
+    attributes:
+      label: Additional information
+      description: If your problem needs further explanation, please add more information here
